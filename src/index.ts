@@ -57,7 +57,7 @@ function simulateStormyOcean(light: SevenChannelRGB) {
   }
 
   setInterval(updateLight, 100);
-  setInterval(lightning, 1000); // Check for lightning every second
+  setInterval(lightning, 10000); // Check for lightning every 10 seconds
 }
 
 function simulateEerieLight(light: SevenChannelRGB) {
