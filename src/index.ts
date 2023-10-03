@@ -82,7 +82,7 @@ function simulateEerieLight(light: SevenChannelRGB) {
   setInterval(updateLight, 1000); // Update the light every 50 milliseconds for more frequent flickering
 }
 
-// Runs git pull every 10 seconds
+// Runs git pull every 5 mins
 const pollGithub = () => {
   const { exec } = require("child_process");
   exec("git pull", (err: any, stdout: any, stderr: any) => {
@@ -92,7 +92,7 @@ const pollGithub = () => {
     }
     console.log(stdout);
   });
-  setTimeout(pollGithub, 10000);
+  setTimeout(pollGithub, 300000);
 };
 
 (() => {
