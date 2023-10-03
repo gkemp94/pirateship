@@ -60,8 +60,44 @@ function simulateStormyOcean(light: SevenChannelRGB) {
   setInterval(lightning, 1000); // Check for lightning every second
 }
 
+function simulateEerieLight(light: SevenChannelRGB) {
+  const eerieOrange = [255, 85, 0]; // RGB for an orange color
+  let currentColor = [...eerieOrange];
+  let brightness = 50;
+
+  function updateLight() {
+    console.log("up");
+    // Gradually change brightness
+    if (Math.random() > 0.5) {
+      console.log("flicker");
+      // 30% chance to change brightness target
+      brightness = Math.random() * 35 + 35; // Random brightness between 35% and 65%
+    }
+    console.log(light.getBrightness());
+    let currentBrightness = lerp(light.getBrightness(), brightness, 1); // Increased the lerp factor for faster transition
+
+    light.setBrightness(Math.round(currentBrightness)).setRGB(currentColor.map(Math.round)).update();
+  }
+
+  setInterval(updateLight, 1000); // Update the light every 50 milliseconds for more frequent flickering
+}
+
+// Runs git pull every 10 seconds
+const pollGithub = () => {
+  const { exec } = require("child_process");
+  exec("git pull", (err: any, stdout: any, stderr: any) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
+  setTimeout(pollGithub, 10000);
+};
+
 (() => {
   const controller = new DMXController();
   const light = new SevenChannelRGB({ controller, start: 0 });
   simulateStormyOcean(light);
+  pollGithub();
 })();
