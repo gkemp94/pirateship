@@ -12,7 +12,7 @@ function simulateStormyOcean(light: SevenChannelRGB) {
   const stormyGreen = [0, 102, 102];
   let currentColor = [...deepOceanBlue];
   let targetColor = [...stormyGreen];
-  let brightness = 50;
+  let brightness = 75;
 
   function updateLight() {
     if (isLightning) {
@@ -27,7 +27,7 @@ function simulateStormyOcean(light: SevenChannelRGB) {
     // Gradually change brightness
     if (Math.random() > 0.95) {
       // 5% chance to change brightness target
-      brightness = Math.random() * 50 + 25; // Random brightness between 25% and 75%
+      brightness = Math.random() * 75 + 100; // Random brightness between 25% and 75%
     }
     let currentBrightness = lerp(light.getBrightness(), brightness, 0.05);
 
