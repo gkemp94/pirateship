@@ -43,7 +43,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
 
   // Simulate lightning
   function lightning() {
-    if (Math.random() > 0.85 && canLightning) {
+    if (Math.random() > 0.75 && canLightning) {
       isLightning = true;
       canLightning = false;
       let currentBrightness = lerp(light.getBrightness(), brightness, 0.05);
@@ -73,13 +73,13 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
   };
 
   // Simulate fog
-  doFog();
+  setTimeout(doFog, 10000);
   setInterval(() => {
     doFog();
   }, FIVE_MINUTES);
 
   setInterval(updateLight, 100);
-  setInterval(lightning, 5000); // Check for lightning every 10 seconds
+  setInterval(lightning, 10000); // Check for lightning every 10 seconds
   setInterval(() => {
     // isDark();
   }, 5000);
