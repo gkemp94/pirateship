@@ -120,7 +120,7 @@ const pollGithub = () => {
   });
 
   // Poll Github every 30 seconds
-  setTimeout(pollGithub, 30000);
+  setTimeout(pollGithub, 120000);
   // setTimeout(pollGithub, 300000);
 };
 
