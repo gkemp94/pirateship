@@ -72,7 +72,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
   }, FIVE_MINUTES);
 
   setInterval(updateLight, 100);
-  setInterval(lightning, 10000); // Check for lightning every 10 seconds
+  setInterval(lightning, 5000); // Check for lightning every 10 seconds
   setInterval(() => {
     // isDark();
   }, 5000);
