@@ -11,8 +11,8 @@ export class FogMachine extends Device {
    * @param percentage {number} min-0 max-100
    * @returns
    */
-  set(percentage: number) {
-    this.data = [Math.round(Math.min(Math.max(0, percentage), 100) / 2.55)];
+  run(percentage: number) {
+    this.data = [Math.round((Math.min(Math.max(0, percentage), 100) / 100) * 255)];
     return this;
   }
 }
