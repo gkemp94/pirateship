@@ -61,15 +61,21 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
 
   const FIVE_MINUTES = 1000 * 60 * 5;
   const TWO_MINUTES = 1000 * 60 * 2;
+  const FIVE_SECONDS = 1000 * 5;
 
-  // Simulate fog
-  setInterval(() => {
+  const doFog = () => {
     console.log(`Fogging`);
     FOG_MACHINE_ENABLED && fogMachine.run(50).update();
     setTimeout(() => {
       console.log(`Clearing fog`);
       fogMachine.run(0).update();
-    }, 10000);
+    }, FIVE_SECONDS);
+  };
+
+  // Simulate fog
+  doFog();
+  setInterval(() => {
+    doFog();
   }, FIVE_MINUTES);
 
   setInterval(updateLight, 100);
