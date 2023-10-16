@@ -2,6 +2,8 @@ import { DMXController } from "./DMXController";
 import { FogMachine } from "./FogMachine";
 import { SevenChannelRGB } from "./SevenChannelRGB";
 
+const FOG_MACHINE_ENABLED = true;
+
 function lerp(start: number, end: number, t: number) {
   return start + t * (end - start);
 }
@@ -60,7 +62,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
   // Simulate fog
   setInterval(() => {
     console.log(`Fogging`);
-    fogMachine.set(50).update();
+    FOG_MACHINE_ENABLED && fogMachine.set(50).update();
     setTimeout(() => {
       console.log(`Clearing fog`);
       fogMachine.set(0).update();
@@ -69,6 +71,9 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
 
   setInterval(updateLight, 100);
   setInterval(lightning, 10000); // Check for lightning every 10 seconds
+  setInterval(() => {
+    // isDark();
+  }, 5000);
 }
 /**
 function simulateEerieLight(light: SevenChannelRGB, fogMachine: FogMachine) {
