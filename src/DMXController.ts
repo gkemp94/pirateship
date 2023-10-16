@@ -17,7 +17,6 @@ export class DMXController {
 
   set(start: number, values: number[]) {
     this.data.splice(start, values.length, ...values);
-    console.log(this.data.slice(0, 8).join(","));
     const payload = new FormData();
     payload.append("u", this.universe.toString());
     payload.append("d", `${this.data.join(",")}`);
