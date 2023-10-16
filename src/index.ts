@@ -1,11 +1,12 @@
 import { DMXController } from "./DMXController";
+import { FogMachine } from "./FogMachine";
 import { SevenChannelRGB } from "./SevenChannelRGB";
 
 function lerp(start: number, end: number, t: number) {
   return start + t * (end - start);
 }
 
-function simulateStormyOcean(light: SevenChannelRGB) {
+function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
   let isLightning = false;
   let canLightning = true;
   const deepOceanBlue = [0, 51, 102];
@@ -48,7 +49,7 @@ function simulateStormyOcean(light: SevenChannelRGB) {
 
       setTimeout(() => {
         isLightning = false;
-        light.strobe(false).setRGB(currentColor).setBrightness(currentBrightness).update();
+        light.strobe(false).setRGB(currentColor.map(Math.round)).setBrightness(currentBrightness).update();
         setTimeout(() => {
           canLightning = true;
         }, 5000);
@@ -56,11 +57,21 @@ function simulateStormyOcean(light: SevenChannelRGB) {
     }
   }
 
+  // Simulate fog
+  setInterval(() => {
+    console.log(`Fogging`);
+    fogMachine.set(50).update();
+    setTimeout(() => {
+      console.log(`Clearing fog`);
+      fogMachine.set(0).update();
+    }, 5000);
+  }, 120000);
+
   setInterval(updateLight, 100);
   setInterval(lightning, 10000); // Check for lightning every 10 seconds
 }
-
-function simulateEerieLight(light: SevenChannelRGB) {
+/**
+function simulateEerieLight(light: SevenChannelRGB, fogMachine: FogMachine) {
   const eerieOrange = [255, 85, 0]; // RGB for an orange color
   let currentColor = [...eerieOrange];
   let brightness = 50;
@@ -81,6 +92,7 @@ function simulateEerieLight(light: SevenChannelRGB) {
 
   setInterval(updateLight, 1000); // Update the light every 50 milliseconds for more frequent flickering
 }
+ */
 
 // Runs git pull every 5 mins
 const pollGithub = () => {
@@ -92,12 +104,16 @@ const pollGithub = () => {
     }
     console.log(stdout);
   });
-  setTimeout(pollGithub, 300000);
+
+  // Poll Github every 30 seconds
+  setTimeout(pollGithub, 30000);
+  // setTimeout(pollGithub, 300000);
 };
 
 (() => {
   const controller = new DMXController();
   const light = new SevenChannelRGB({ controller, start: 0 });
-  simulateStormyOcean(light);
+  const fogMachine = new FogMachine({ controller, start: 7 });
+  simulateStormyOcean(light, fogMachine);
   pollGithub();
 })();
