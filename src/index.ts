@@ -60,6 +60,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
   }
 
   const FIVE_MINUTES = 1000 * 60 * 5;
+  const TWO_MINUTES = 1000 * 60 * 2;
 
   // Simulate fog
   setInterval(() => {
@@ -69,7 +70,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
       console.log(`Clearing fog`);
       fogMachine.run(0).update();
     }, 5000);
-  }, FIVE_MINUTES);
+  }, TWO_MINUTES);
 
   setInterval(updateLight, 100);
   setInterval(lightning, 5000); // Check for lightning every 10 seconds
