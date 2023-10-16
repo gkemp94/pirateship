@@ -70,7 +70,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
       console.log(`Clearing fog`);
       fogMachine.run(0).update();
     }, 10000);
-  }, TWO_MINUTES);
+  }, FIVE_MINUTES);
 
   setInterval(updateLight, 100);
   setInterval(lightning, 5000); // Check for lightning every 10 seconds
