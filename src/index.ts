@@ -59,7 +59,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
     }
   }
 
-  const FIVE_MINUTES = 1000 * 60 * 5;
+  const FIVE_MINUTES = 1000 * 60 * 10;
   const TWO_MINUTES = 1000 * 60 * 2;
   const FIVE_SECONDS = 1000 * 5;
 
