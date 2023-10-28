@@ -30,7 +30,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
     // Gradually change brightness
     if (Math.random() > 0.95) {
       // 5% chance to change brightness target
-      brightness = Math.random() * 75 + 100; // Random brightness between 25% and 75%
+      brightness = Math.random() * 75 + 225; // Random brightness between 25% and 75%
     }
     let currentBrightness = lerp(light.getBrightness(), brightness, 0.05);
 
