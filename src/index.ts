@@ -68,7 +68,7 @@ function simulateStormyOcean(light: SevenChannelRGB, fogMachine: FogMachine) {
     FOG_MACHINE_ENABLED && fogMachine.run(30).update();
     setTimeout(() => {
       console.log(`Clearing fog`);
-      fogMachine.run(10).update();
+      fogMachine.run(0).update();
     }, FIVE_SECONDS);
   };
 
